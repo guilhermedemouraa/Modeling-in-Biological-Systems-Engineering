@@ -1,0 +1,577 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Biological and Agricultural Engineering Department</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-05-26"><meta name="DC.source" content="EBS270_HW3.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Biological and Agricultural Engineering Department</h1><!--introduction--><p>Modeling and Analysis of Physical and Biological Processes: EBS 270 Homework No. 3 - Due Date: May 28, 2019 Student: Guilherme De Moura Araujo</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">Analytical Solution from Homework #1</a></li><li><a href="#3">Finite Difference Solution</a></li><li><a href="#4">Problem 1 comments</a></li><li><a href="#5">Alternative hand written solution (PLEASE DON'T RUN THIS SECTION IF YOU</a></li><li><a href="#6">Transient Orange Cooling using PDEPE</a></li><li><a href="#7">Problem 2a</a></li><li><a href="#8">Temperature as a function of time for the last node (orange outer surface)</a></li><li><a href="#9">Problem 2b</a></li><li><a href="#10">Problem 3b</a></li><li><a href="#11">Problem 3c</a></li><li><a href="#12">Problem 3d</a></li><li><a href="#13">Functions Required for PDEPE</a></li></ul></div><pre class="codeinput">clear <span class="string">all</span>; clc;
+
+<span class="keyword">global</span> T_Harvest T_Storage rho cp a a0 a1 k h w he
+
+T_Harvest = 26.7; <span class="comment">% Ambiente Temperature at Harvest, (oC)</span>
+T_Storage = 3; <span class="comment">% Storage temperature (oC)</span>
+rho = 998; <span class="comment">% Density of orange (km/m3)</span>
+cp = 3900; <span class="comment">% Specific heat of orange (J/kg/oC)</span>
+a = 0.036; <span class="comment">% Radius of fruit (m)</span>
+a0 = 4.71;
+a1 = 3.55;
+<span class="comment">%A = a0 + a1*T; % Heat production due to respiration (J/(s-m3))</span>
+k = 0.47; <span class="comment">% Thermal Conductivity of the fruit (W/m/oC)</span>
+h = 6; <span class="comment">% Convective heat transfer coefficient at the fruit surface (W/m2/oC)</span>
+w = sqrt(a1/k);
+he = h-k/a;
+dr = 0.001; <span class="comment">%Random value adopted by student</span>
+</pre><h2 id="2">Analytical Solution from Homework #1</h2><p>Harvesting condiions</p><pre class="codeinput">T_Inf = T_Harvest;
+alpha = -(a0 + a1*T_Inf)/a1;
+A = -(alpha*(k+he*a))/(he*sin(w*a)+k*w*cos(w*a));
+j = 1;
+<span class="keyword">for</span> r=0:dr:a
+    <span class="keyword">if</span> r == 0
+      T_H(j) = A*w-((a0+a1*T_Inf)/a1)+T_Inf;
+    <span class="keyword">else</span>
+    u_H(j) = A*sin(w*r)+alpha*r;
+    T_H(j) = u_H(j)/r+T_Inf;
+    <span class="keyword">end</span>
+    j = j+1;
+<span class="keyword">end</span>
+<span class="comment">%--------------------------------------------------------------------------</span>
+<span class="comment">% Storage conditions</span>
+T_Inf = T_Storage;
+alpha = -(a0 + a1*T_Inf)/a1;
+A = (-alpha*(k+he*a))/(he*sin(w*a)+k*w*cos(w*a));
+j = 1;
+<span class="keyword">for</span> r=0:dr:a
+    <span class="keyword">if</span> r == 0
+      T_S(j) = A*w-((a0+a1*T_Inf)/a1)+T_Inf;
+    <span class="keyword">else</span>
+    u_S(j) = A*sin(w*r)+alpha*r;
+    T_S(j) = u_S(j)/r+T_Inf;
+    <span class="keyword">end</span>
+    j = j+1;
+<span class="keyword">end</span>
+</pre><h2 id="3">Finite Difference Solution</h2><pre class="codeinput">N = 37; <span class="comment">% Number of nodes</span>
+dr = a/(N-1); <span class="comment">% Delta r -&gt; Same used for analytical solution</span>
+alpha = k/(dr*dr); <span class="comment">% Constant</span>
+beta = a1-2*alpha;
+
+AN = zeros(10,10);
+<span class="keyword">for</span> i=1:N
+    <span class="keyword">for</span> j=1:N
+        <span class="keyword">if</span> i&gt;=2
+            <span class="keyword">if</span> i==j
+                AN(i,j) = beta;
+                AN(i,j-1) = (alpha-alpha/(i-1));
+                <span class="keyword">if</span> i&lt;N
+                AN(i,j+1) = (alpha+alpha/(i-1));
+                <span class="keyword">end</span>
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+AN(1,1) = a1-6*alpha;
+AN(1,2) = 6*alpha;
+AN(N,N-1) = 2*alpha;
+AN(N,N) = -2*(alpha+h/a+h/dr)+a1;
+
+FNH = -a0*ones(N,1);
+FNH(N)= -a0-2*h*(1/a+1/dr)*T_Harvest;
+
+FNS = -a0*ones(N,1);
+FNS(N)= -a0-2*h*(1/a+1/dr)*T_Storage;
+
+TNH = inv(AN)*FNH;
+TNS = inv(AN)*FNS;
+
+j = 0:dr:a;
+subplot(1,2,1)
+plot(0:a/(length(T_H)-1):a,T_H,<span class="string">'bo'</span>);
+hold <span class="string">on</span>
+plot(j,TNH,<span class="string">'r--'</span>);
+legend(<span class="string">'Simplified Analytical Solution'</span>,<span class="string">'Finite Difference Solution'</span>)
+title(<span class="string">'Temperature distribution during harvesting'</span>);
+xlabel(<span class="string">'Fruit radii (m)'</span>);ylabel(<span class="string">'Temperature oC'</span>);
+grid
+subplot(1,2,2)
+plot(0:a/(length(T_H)-1):a,T_S,<span class="string">'bo'</span>);
+hold <span class="string">on</span>
+plot(j,TNS,<span class="string">'r--'</span>);
+legend(<span class="string">'Simplified Analytical Solution'</span>,<span class="string">'Finite Difference Solution'</span>);
+title(<span class="string">'Temperature distribution during storage'</span>);
+xlabel(<span class="string">'Fruit radii (m)'</span>);ylabel(<span class="string">'Temperature oC'</span>);
+grid
+</pre><img vspace="5" hspace="5" src="EBS270_HW3_01.png" alt=""> <h2 id="4">Problem 1 comments</h2><p>After plotting Simplified Analytical Solution vs. Finite Difference we can notice that both results are in perfect accord with each other.s</p><h2 id="5">Alternative hand written solution (PLEASE DON'T RUN THIS SECTION IF YOU</h2><p>RAN THE PREVIOUS SECTION)</p><pre class="codeinput">N = 10; <span class="comment">% Total number of Nodes (From T0 to T9)</span>
+dr = a/(N-1);
+alpha = k/(dr*dr); <span class="comment">% Constant</span>
+beta = a1-2*alpha;
+
+A = [a1-6*alpha 6*alpha 0 0 0 0 0 0 0 0;
+    0 beta 2*alpha 0 0 0 0 0 0 0;
+    0 alpha/2 beta 3/2*alpha 0 0 0 0 0 0;
+    0 0 2/3*alpha beta 4/3*alpha 0 0 0 0 0;
+    0 0 0 3/4*alpha beta 5/4*alpha 0 0 0 0;
+    0 0 0 0 4/5*alpha beta 6/5*alpha 0 0 0;
+    0 0 0 0 0 5/6*alpha beta 7/6*alpha 0 0;
+    0 0 0 0 0 0 6/7*alpha beta 8/7*alpha 0;
+    0 0 0 0 0 0 0 7/8*alpha beta 9/8*alpha;
+    0 0 0 0 0 0 0 0 2*alpha -2*(alpha+h/a+h/dr)+a1];
+
+FH = [-a0;-a0;-a0;-a0;-a0;-a0;-a0;-a0;-a0;-a0-2*h*(1/a+1/dr)*T_Harvest];
+TH = inv(A)*FH;
+
+FS = [-a0;-a0;-a0;-a0;-a0;-a0;-a0;-a0;-a0;-a0-2*h*(1/a+1/dr)*T_Storage];
+TS = inv(A)*FS;
+
+j = 0:a/(N-1):a;
+subplot(1,2,1)
+plot(0:a/(length(T_H)-1):a,T_H,<span class="string">'bo'</span>);
+hold <span class="string">on</span>
+plot(j,TH,<span class="string">'r--'</span>);
+legend(<span class="string">'Simplified Analytical Solution'</span>,<span class="string">'Finite Difference Solution'</span>)
+title(<span class="string">'Temperature distribution during harvesting'</span>);
+xlabel(<span class="string">'Fruit radii (m)'</span>);ylabel(<span class="string">'Temperature oC'</span>);
+grid
+subplot(1,2,2)
+plot(0:a/(length(T_H)-1):a,T_S,<span class="string">'bo'</span>);
+hold <span class="string">on</span>
+plot(j,TS,<span class="string">'r--'</span>);
+legend(<span class="string">'Simplified Analytical Solution'</span>,<span class="string">'Finite Difference Solution'</span>);
+title(<span class="string">'Temperature distribution during storage'</span>);
+xlabel(<span class="string">'Fruit radii (m)'</span>);ylabel(<span class="string">'Temperature oC'</span>);
+grid
+</pre><img vspace="5" hspace="5" src="EBS270_HW3_02.png" alt=""> <h2 id="6">Transient Orange Cooling using PDEPE</h2><pre class="codeinput"><span class="keyword">global</span> Q ER
+Q = 11.6e+12;
+ER = 7569;
+r = 0:dr:a;
+
+m = 2;
+t = 0:(259200/71):259200; <span class="comment">%3600 s/h * 24/day * 3days = 259200 s</span>
+sol = pdepe(m, @pdefun, @pdeic, @pdebc, r, t);
+
+<span class="comment">% Surface plot</span>
+surf(r, t, sol)
+title(<span class="string">'Orange Cooling over 72 hours (Cold Storage in 36 hours)'</span>)
+xlabel(<span class="string">'Radius [m]'</span>)
+ylabel(<span class="string">'Time [s]'</span>)
+</pre><img vspace="5" hspace="5" src="EBS270_HW3_03.png" alt=""> <h2 id="7">Problem 2a</h2><pre class="codeinput">figure
+plot(r, T_S, <span class="string">'bo'</span>, r, TNS, <span class="string">'r--'</span>, r, sol(end,:), <span class="string">'g--o'</span>);
+title(<span class="string">'Steady state solutions'</span>)
+xlabel(<span class="string">'Radius, [m] '</span>);
+ylabel(<span class="string">'Temperature [ oC]'</span>);
+legend(<span class="string">'Analytical Solution'</span>, <span class="string">'Finite Difference'</span>, <span class="string">'Pdepe'</span>);
+grid;
+
+<span class="comment">% Comments:</span>
+<span class="comment">% We can see that all three methods in accord with each other.</span>
+</pre><pre class="codeoutput error">Error using plot
+Vectors must be the same length.
+
+Error in EBS270_HW3 (line 173)
+plot(r, T_S, 'bo', r, TNS, 'r--', r, sol(end,:), 'g--o');
+</pre><h2 id="8">Temperature as a function of time for the last node (orange outer surface)</h2><pre class="codeinput">figure
+plot(t, sol(:,end))
+title(<span class="string">'Temperature of Orange Surface over Time (outer surface)'</span>)
+xlabel(<span class="string">'Time [s]'</span>)
+ylabel(<span class="string">'Temperature [oC]'</span>)
+</pre><h2 id="9">Problem 2b</h2><pre class="codeinput">T_Linear = sol(end,:);  <span class="comment">% Comment out for 2b</span>
+T_Arrhenius = sol(end,:);
+DiffT = T_Linear - T_Arrhenius;
+avgT = mean(DiffT(:));
+
+fprintf(<span class="string">'Average difference temperature in the steady state: %.5f oC\n'</span>,avgT);
+
+<span class="comment">% Comments: after running pdepe two times, the average temperature</span>
+<span class="comment">% difference between the linear assumption and the equation of Arrhenius</span>
+<span class="comment">% was calculated as 0.0027 oC, which is slightly insignificant. Therefore</span>
+<span class="comment">% we conclude that our previous assumption was good.</span>
+</pre><h2 id="10">Problem 3b</h2><pre class="codeinput">T_homogenous = sol(end,:);  <span class="comment">% Comment out for 3b</span>
+T_descontinuity = sol(end,:);
+DiffT2 = T_homogenous - T_descontinuity;
+avgT2 = mean(DiffT2(:));
+
+fprintf(<span class="string">'Average difference temperature in the steady state: %.5f oC\n'</span>,avgT2);
+
+<span class="comment">% Comments: after running pdepe two times, the average temperature</span>
+<span class="comment">% difference between the homogenous assumption and the more complex model</span>
+<span class="comment">% (material descontinuity flesh-rind) was calculated as -0.00111 oC, which</span>
+<span class="comment">% is slightly insignificant. Therefore we conclude that our previous</span>
+<span class="comment">% assumption (material is homogenous) was good.</span>
+</pre><h2 id="11">Problem 3c</h2><pre class="codeinput">T = sol(end,end);
+area = 4*pi*a^2;
+Qremoved = h * area * (T-T_Storage);
+fprintf(<span class="string">'Heat required to be removed: Q = %.5f J/s\n'</span>,Qremoved);
+
+<span class="comment">% Comments: From homework 1 we calculated Q = 0.003 J/s; and now we found Q</span>
+<span class="comment">% = 0.028 J/s. Again, the difference is very small. Suggesting that a</span>
+<span class="comment">% simpler model yields good results just as a more complex model.</span>
+</pre><h2 id="12">Problem 3d</h2><pre class="codeinput">V = 4/3*pi*a^3;
+Q2 = rho * cp * V * (T_Harvest - T) <span class="comment">% calculates E for 3d</span>
+fprintf(<span class="string">'Heat required to be removed: Q = %.2f J/s\n'</span>,Q2);
+
+<span class="comment">% Comments: From homework 1 we calculated Q = 18,100 J/s; and now we found</span>
+<span class="comment">% Q = 18,000 J/S. Again, the difference is very small. Suggesting that a</span>
+<span class="comment">% simpler model yields good results just as a more complex model.</span>
+</pre><h2 id="13">Functions Required for PDEPE</h2><p>pdepe</p><pre class="codeinput"><span class="keyword">function</span> [c,f,s] = pdefun(x,t,u,DuDx)
+<span class="keyword">global</span> a0 a1 cp h he Q ER rho k
+c = rho * cp;
+<span class="comment">% Uncomment the if statement for parts 3b, 3c and 3d</span>
+<span class="comment">% if x &lt;= 0.033</span>
+<span class="comment">%   k = 0.47;</span>
+<span class="comment">% else</span>
+<span class="comment">%   k = 0.23;</span>
+<span class="comment">% end</span>
+f = k * DuDx;
+s = a0 + a1 * u; <span class="comment">% comment this out for 2b and after</span>
+<span class="comment">% s = Q * exp(-ER/(u + 273)); % uncomment this out for 2b and after</span>
+<span class="keyword">end</span>
+<span class="comment">% IC</span>
+<span class="keyword">function</span> u0 = pdeic(x)
+<span class="keyword">global</span> T_Harvest
+u0 = T_Harvest;
+<span class="keyword">end</span>
+<span class="comment">% BC</span>
+<span class="keyword">function</span> [pl,ql,pr,qr] = pdebc(xl,ul,xr,ur,t)
+<span class="keyword">global</span> T_Harvest T_Storage h
+pl = 0;
+ql = 1;
+<span class="keyword">if</span> t &lt; 129600
+    pr = h * (ur - T_Harvest);
+<span class="keyword">else</span>
+    pr = h * (ur - T_Storage);
+<span class="keyword">end</span>
+qr = 1;
+<span class="keyword">end</span>
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Biological and Agricultural Engineering Department
+% Modeling and Analysis of Physical and Biological Processes: EBS 270
+% Homework No. 3 - Due Date: May 28, 2019
+% Student: Guilherme De Moura Araujo
+%%
+clear all; clc;
+
+global T_Harvest T_Storage rho cp a a0 a1 k h w he
+
+T_Harvest = 26.7; % Ambiente Temperature at Harvest, (oC)
+T_Storage = 3; % Storage temperature (oC)
+rho = 998; % Density of orange (km/m3)
+cp = 3900; % Specific heat of orange (J/kg/oC)
+a = 0.036; % Radius of fruit (m)
+a0 = 4.71;
+a1 = 3.55;
+%A = a0 + a1*T; % Heat production due to respiration (J/(s-m3))
+k = 0.47; % Thermal Conductivity of the fruit (W/m/oC)
+h = 6; % Convective heat transfer coefficient at the fruit surface (W/m2/oC)
+w = sqrt(a1/k);
+he = h-k/a;
+dr = 0.001; %Random value adopted by student
+
+%% Analytical Solution from Homework #1
+% Harvesting condiions
+T_Inf = T_Harvest;
+alpha = -(a0 + a1*T_Inf)/a1;
+A = -(alpha*(k+he*a))/(he*sin(w*a)+k*w*cos(w*a));
+j = 1;
+for r=0:dr:a
+    if r == 0
+      T_H(j) = A*w-((a0+a1*T_Inf)/a1)+T_Inf;
+    else
+    u_H(j) = A*sin(w*r)+alpha*r;
+    T_H(j) = u_H(j)/r+T_Inf;
+    end
+    j = j+1;
+end
+%REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH
+% Storage conditions
+T_Inf = T_Storage;
+alpha = -(a0 + a1*T_Inf)/a1;
+A = (-alpha*(k+he*a))/(he*sin(w*a)+k*w*cos(w*a));
+j = 1;
+for r=0:dr:a
+    if r == 0
+      T_S(j) = A*w-((a0+a1*T_Inf)/a1)+T_Inf;
+    else
+    u_S(j) = A*sin(w*r)+alpha*r;
+    T_S(j) = u_S(j)/r+T_Inf;
+    end
+    j = j+1;
+end
+
+%% Finite Difference Solution
+
+N = 37; % Number of nodes
+dr = a/(N-1); % Delta r -> Same used for analytical solution
+alpha = k/(dr*dr); % Constant
+beta = a1-2*alpha;
+
+AN = zeros(10,10);
+for i=1:N
+    for j=1:N
+        if i>=2
+            if i==j
+                AN(i,j) = beta;
+                AN(i,j-1) = (alpha-alpha/(i-1));
+                if i<N
+                AN(i,j+1) = (alpha+alpha/(i-1));
+                end
+            end
+        end
+    end
+end
+
+AN(1,1) = a1-6*alpha;
+AN(1,2) = 6*alpha;
+AN(N,N-1) = 2*alpha;
+AN(N,N) = -2*(alpha+h/a+h/dr)+a1;
+
+FNH = -a0*ones(N,1);
+FNH(N)= -a0-2*h*(1/a+1/dr)*T_Harvest;
+
+FNS = -a0*ones(N,1);
+FNS(N)= -a0-2*h*(1/a+1/dr)*T_Storage;
+
+TNH = inv(AN)*FNH;
+TNS = inv(AN)*FNS;
+
+j = 0:dr:a;
+subplot(1,2,1)
+plot(0:a/(length(T_H)-1):a,T_H,'bo');
+hold on
+plot(j,TNH,'rREPLACE_WITH_DASH_DASH');
+legend('Simplified Analytical Solution','Finite Difference Solution')
+title('Temperature distribution during harvesting');
+xlabel('Fruit radii (m)');ylabel('Temperature oC');
+grid
+subplot(1,2,2)
+plot(0:a/(length(T_H)-1):a,T_S,'bo');
+hold on
+plot(j,TNS,'rREPLACE_WITH_DASH_DASH');
+legend('Simplified Analytical Solution','Finite Difference Solution');
+title('Temperature distribution during storage');
+xlabel('Fruit radii (m)');ylabel('Temperature oC');
+grid
+
+%% Problem 1 comments
+% After plotting Simplified Analytical Solution vs. Finite Difference we
+% can notice that both results are in perfect accord with each other.s
+%% Alternative hand written solution (PLEASE DON'T RUN THIS SECTION IF YOU
+% RAN THE PREVIOUS SECTION)
+N = 10; % Total number of Nodes (From T0 to T9)
+dr = a/(N-1);
+alpha = k/(dr*dr); % Constant
+beta = a1-2*alpha;
+
+A = [a1-6*alpha 6*alpha 0 0 0 0 0 0 0 0;
+    0 beta 2*alpha 0 0 0 0 0 0 0;
+    0 alpha/2 beta 3/2*alpha 0 0 0 0 0 0;
+    0 0 2/3*alpha beta 4/3*alpha 0 0 0 0 0;
+    0 0 0 3/4*alpha beta 5/4*alpha 0 0 0 0;
+    0 0 0 0 4/5*alpha beta 6/5*alpha 0 0 0;
+    0 0 0 0 0 5/6*alpha beta 7/6*alpha 0 0;
+    0 0 0 0 0 0 6/7*alpha beta 8/7*alpha 0;
+    0 0 0 0 0 0 0 7/8*alpha beta 9/8*alpha;
+    0 0 0 0 0 0 0 0 2*alpha -2*(alpha+h/a+h/dr)+a1];
+
+FH = [-a0;-a0;-a0;-a0;-a0;-a0;-a0;-a0;-a0;-a0-2*h*(1/a+1/dr)*T_Harvest];
+TH = inv(A)*FH;
+
+FS = [-a0;-a0;-a0;-a0;-a0;-a0;-a0;-a0;-a0;-a0-2*h*(1/a+1/dr)*T_Storage];
+TS = inv(A)*FS;
+
+j = 0:a/(N-1):a;
+subplot(1,2,1)
+plot(0:a/(length(T_H)-1):a,T_H,'bo');
+hold on
+plot(j,TH,'rREPLACE_WITH_DASH_DASH');
+legend('Simplified Analytical Solution','Finite Difference Solution')
+title('Temperature distribution during harvesting');
+xlabel('Fruit radii (m)');ylabel('Temperature oC');
+grid
+subplot(1,2,2)
+plot(0:a/(length(T_H)-1):a,T_S,'bo');
+hold on
+plot(j,TS,'rREPLACE_WITH_DASH_DASH');
+legend('Simplified Analytical Solution','Finite Difference Solution');
+title('Temperature distribution during storage');
+xlabel('Fruit radii (m)');ylabel('Temperature oC');
+grid
+
+%% Transient Orange Cooling using PDEPE
+
+global Q ER
+Q = 11.6e+12;
+ER = 7569;
+r = 0:dr:a;
+
+m = 2;
+t = 0:(259200/71):259200; %3600 s/h * 24/day * 3days = 259200 s
+sol = pdepe(m, @pdefun, @pdeic, @pdebc, r, t);
+
+% Surface plot
+surf(r, t, sol)
+title('Orange Cooling over 72 hours (Cold Storage in 36 hours)')
+xlabel('Radius [m]')
+ylabel('Time [s]')
+%% Problem 2a
+
+figure
+plot(r, T_S, 'bo', r, TNS, 'rREPLACE_WITH_DASH_DASH', r, sol(end,:), 'gREPLACE_WITH_DASH_DASHo');
+title('Steady state solutions')
+xlabel('Radius, [m] ');
+ylabel('Temperature [ oC]');
+legend('Analytical Solution', 'Finite Difference', 'Pdepe');
+grid;
+
+% Comments:
+% We can see that all three methods in accord with each other.
+%% Temperature as a function of time for the last node (orange outer surface)
+
+figure
+plot(t, sol(:,end))
+title('Temperature of Orange Surface over Time (outer surface)')
+xlabel('Time [s]')
+ylabel('Temperature [oC]')
+%% Problem 2b
+
+T_Linear = sol(end,:);  % Comment out for 2b
+T_Arrhenius = sol(end,:);
+DiffT = T_Linear - T_Arrhenius;
+avgT = mean(DiffT(:));
+
+fprintf('Average difference temperature in the steady state: %.5f oC\n',avgT);
+
+% Comments: after running pdepe two times, the average temperature
+% difference between the linear assumption and the equation of Arrhenius
+% was calculated as 0.0027 oC, which is slightly insignificant. Therefore
+% we conclude that our previous assumption was good.
+
+%% Problem 3b
+
+T_homogenous = sol(end,:);  % Comment out for 3b
+T_descontinuity = sol(end,:);
+DiffT2 = T_homogenous - T_descontinuity;
+avgT2 = mean(DiffT2(:));
+
+fprintf('Average difference temperature in the steady state: %.5f oC\n',avgT2);
+
+% Comments: after running pdepe two times, the average temperature
+% difference between the homogenous assumption and the more complex model
+% (material descontinuity flesh-rind) was calculated as -0.00111 oC, which
+% is slightly insignificant. Therefore we conclude that our previous
+% assumption (material is homogenous) was good.
+
+%% Problem 3c
+
+T = sol(end,end);
+area = 4*pi*a^2;
+Qremoved = h * area * (T-T_Storage);
+fprintf('Heat required to be removed: Q = %.5f J/s\n',Qremoved);
+
+% Comments: From homework 1 we calculated Q = 0.003 J/s; and now we found Q
+% = 0.028 J/s. Again, the difference is very small. Suggesting that a
+% simpler model yields good results just as a more complex model.
+%% Problem 3d
+
+V = 4/3*pi*a^3;
+Q2 = rho * cp * V * (T_Harvest - T) % calculates E for 3d
+fprintf('Heat required to be removed: Q = %.2f J/s\n',Q2);
+
+% Comments: From homework 1 we calculated Q = 18,100 J/s; and now we found
+% Q = 18,000 J/S. Again, the difference is very small. Suggesting that a
+% simpler model yields good results just as a more complex model.
+%% Functions Required for PDEPE
+% pdepe
+function [c,f,s] = pdefun(x,t,u,DuDx)
+global a0 a1 cp h he Q ER rho k
+c = rho * cp;
+% Uncomment the if statement for parts 3b, 3c and 3d
+% if x <= 0.033
+%   k = 0.47;
+% else
+%   k = 0.23;
+% end
+f = k * DuDx;
+s = a0 + a1 * u; % comment this out for 2b and after
+% s = Q * exp(-ER/(u + 273)); % uncomment this out for 2b and after
+end
+% IC
+function u0 = pdeic(x) 
+global T_Harvest
+u0 = T_Harvest;
+end
+% BC
+function [pl,ql,pr,qr] = pdebc(xl,ul,xr,ur,t)
+global T_Harvest T_Storage h
+pl = 0;
+ql = 1;
+if t < 129600
+    pr = h * (ur - T_Harvest);
+else
+    pr = h * (ur - T_Storage);
+end
+qr = 1;
+end
+##### SOURCE END #####
+--></body></html>
