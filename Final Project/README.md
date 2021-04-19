@@ -1,4 +1,4 @@
-## - Study of heat and mass transfer in donuts during the process of deep frying using finite element analysis (FEA).
+## Study of heat and mass transfer in donuts during the process of deep frying using finite element analysis (FEA).
 
 This repository contains the FEA simulation file (Comsol) to evaluate heat and mass transfer from a donut during the deep frying process. This simulation was developed for the final project of EBS270 (UC Davis | Spring quarter 2019 | Instructor: Shrinivasa Upadhyaya)
 
