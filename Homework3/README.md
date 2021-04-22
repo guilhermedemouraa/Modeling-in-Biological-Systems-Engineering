@@ -26,3 +26,7 @@ concentration within the bioreactor.
 
 ![4](https://user-images.githubusercontent.com/39603677/114767837-03e6c580-9d1d-11eb-943b-e250b9f0d20e.JPG)
 ![5](https://user-images.githubusercontent.com/39603677/114767840-047f5c00-9d1d-11eb-9d6a-43cb0aa2dba7.JPG)
+
+#### Disclaimer:
+
+While every attempt has been made to accurately present the models and their solutions,  they have not been verified independently and some typographical and/or technical errors may be present due to the type of assumptions made. In any case, the author (Guilherme De Moura Araujo) hopes that these models and solutions will be a helpful guide and assist in making further improvements as necessary.
