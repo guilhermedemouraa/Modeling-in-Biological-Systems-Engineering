@@ -1,6 +1,6 @@
-### Study of mass transfer in a peanut butter cup
+### Study of mass transfer in a peanut butter cup - Analytical Solution
 
-#### Specific tasks:
+#### Summary of tasks:
 a) Evaluate the peanut oil concentration in peanut butter cup with time, if peanut butter cup is assumed cylindrical in geometry and has a height of 18 mm
 with a 12 mm layer of peanut butter in the middle. Assume that the diffusivity of the lipid in liquid medium is 5.5^10-15 m2/s and the initial concentration
 of peanut oil in peanut butter layer is 18%.
