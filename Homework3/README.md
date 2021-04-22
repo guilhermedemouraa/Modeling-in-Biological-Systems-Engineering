@@ -1,6 +1,6 @@
 ### - Study of heat transfer in an orange fruit using finite differences and Matlab pdepe
 
-#### Specific tasks:
+#### Summary tasks:
 a) Using MATLAB evaluate temperature distribution within the fruit during harvest and during cold storage. Plot the temperature as a function of radius of the fruit.
 - Ambient Temperature at Harvest: 26.7 °C
 - Density of orange: 998 kg/m3
