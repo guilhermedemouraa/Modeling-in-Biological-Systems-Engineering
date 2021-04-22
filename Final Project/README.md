@@ -1,6 +1,6 @@
 ## Study of heat and mass transfer in donuts during the process of deep frying using finite element analysis (FEA).
 
-This repository contains the FEA simulation file (Comsol) to evaluate heat and mass transfer from a donut during the deep frying process. This simulation was developed for the final project of EBS270 (UC Davis | Spring quarter 2019 | Instructor: Shrinivasa Upadhyaya)
+This repository contains the FEA simulation file (Comsol) to evaluate heat and mass transfer from a donut during the deep frying process. This simulation was inspired by my educational experience at UC Davis.
 
 Authors: Guilherme De Moura Araujo, Kaiyan Li, and Vishal Singh
 
@@ -125,6 +125,3 @@ Vélez, R. J. F., & Sosa-Morales, S. M. E. (2003). Heat and mass transfer during
 Vitrac, O., Trystram, G., Raoult-Wack, A.-L., 2000. Deep-fat frying of food: heat and mass transfer, transformations and reactions inside the frying material. Eur. J. Lipid Sci. Technol. 102, 529-538.
 
 Ziaiifar, A.M., Achir, N., Courtois, F., Trezzani, I., Trystram, G., 2008. Review of mechanisms, conditions, and factors involved in the oil uptake phenomenon during the deep-fat frying process. Int. J. Food Sci. Technol. 43, 1410-1423.
-
-
-
