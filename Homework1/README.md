@@ -21,3 +21,7 @@ c) Extend these results to say 600 bins of fruits each containing 500 kg of frui
 #### Results
 
 ![Capture](https://user-images.githubusercontent.com/39603677/114760165-e4976a80-9d13-11eb-8b75-f074e821ebe0.JPG)
+
+#### Disclaimer:
+
+While every attempt has been made to accurately present the models and their solutions,  they have not been verified independently and some typographical and/or technical errors may be present due to the type of assumptions made. In any case, the author (Guilherme De Moura Araujo) hopes that these models and solutions will be a helpful guide and assist in making further improvements as necessary.
