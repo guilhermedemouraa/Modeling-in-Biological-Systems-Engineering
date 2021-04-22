@@ -6,7 +6,7 @@ Authors: Guilherme De Moura Araujo, Kaiyan Li, and Vishal Singh
 
 #### Disclaimer:
 
-While every attempt has been made to accurately present the models and their solutions,  they have not been verified independently and some typographical and/or technical errors may be present due to the type of assumptions made. In any case, the author (Guilherme De Moura Araujo) hopes that these models and solutions will be a helpful guide and assist in making further improvements as necessary.
+While every attempt has been made to accurately present the models and their solutions,  they have not been verified independently and some typographical and/or technical errors may be present due to the type of assumptions made. In any case, the authors hope that these models and solutions will be a helpful guide and assist in making further improvements as necessary.
 
 ### Introduction
 
