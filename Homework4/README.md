@@ -12,3 +12,7 @@ a) Using MATLAB evaluate temperature distribution within the fruit during harves
 - Convective heat transfer coefficient at the fruit surface = 6 W/m2/˚C
 
 ![Capture](https://user-images.githubusercontent.com/39603677/114768389-a30bbd00-9d1d-11eb-9ce5-a3bb43eb7512.JPG)
+
+#### Disclaimer:
+
+While every attempt has been made to accurately present the models and their solutions,  they have not been verified independently and some typographical and/or technical errors may be present due to the type of assumptions made. In any case, the author (Guilherme De Moura Araujo) hopes that these models and solutions will be a helpful guide and assist in making further improvements as necessary.
