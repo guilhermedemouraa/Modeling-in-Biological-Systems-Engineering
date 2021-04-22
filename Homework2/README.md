@@ -14,3 +14,7 @@ b) Produce plot of concentration versus the height of the peanut butter cup and 
 c) Also plot the concentration of peanut oil at times 0, 1, 3, and 5 years on a single 2-D (concentration versus position) plot.
 
 ![Homework2_Guilherme_De_Moura_Araujo_03](https://user-images.githubusercontent.com/39603677/114765779-6c807300-9d1a-11eb-94a2-188fc90c30ef.png)
+
+#### Disclaimer:
+
+While every attempt has been made to accurately present the models and their solutions,  they have not been verified independently and some typographical and/or technical errors may be present due to the type of assumptions made. In any case, the author (Guilherme De Moura Araujo) hopes that these models and solutions will be a helpful guide and assist in making further improvements as necessary.
