@@ -4,6 +4,10 @@ This repository contains the FEA simulation file (Comsol) to evaluate heat and m
 
 Authors: Guilherme De Moura Araujo, Kaiyan Li, and Vishal Singh
 
+#### Disclaimer:
+
+While every attempt has been made to accurately present the models and their solutions,  they have not been verified independently and some typographical and/or technical errors may be present due to the type of assumptions made. In any case, the author (Guilherme De Moura Araujo) hopes that these models and solutions will be a helpful guide and assist in making further improvements as necessary.
+
 ### Introduction
 
 Donuts are a popular deep-fried food present in various forms all over the world, prepared as a sweet snack or desert and usually accompanied by a cup of coffee and good stories. However, modern diets demand healthier nourishments, specially advertising against deep-fried foods. The donut frying process occurs in such a way that the donut dough loses water to the medium and uptakes oil instead. In the process the oil concentration, temperature and frying time play a key role on how heat and mass transfer occurs from the environment and the donut. A complete understanding of this process could potentially result in a final product with lower oil content, making the so beloved donut healthier. Therefore, this project aims at modeling the donut frying process by means of simplified analytical solution and numerical solutions (finite element analysis).
