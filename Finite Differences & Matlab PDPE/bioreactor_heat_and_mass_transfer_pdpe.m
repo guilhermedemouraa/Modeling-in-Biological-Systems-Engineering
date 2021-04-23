@@ -1,6 +1,4 @@
-%% Biological and Agricultural Engineering Department
-% Modeling and Analysis of Physical and Biological Processes: EBS 270
-% Homework No. 3 - Probelm 4 - Due Date: May 28, 2019
+% Modeling and Analysis of Physical and Biological Processes
 % Student: Guilherme De Moura Araujo
 %% Problem 4
 clear all; clc;
